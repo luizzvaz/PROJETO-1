@@ -16,6 +16,6 @@ export default function clickFora(element, events, retorno) {
       setTimeout(() => {
         html.addEventListener(eventos, clicouFora);
       });
-    }); element.setAttribute(atributo, "");
+    }); element.setAttribute(atributo, '');
   }
 }

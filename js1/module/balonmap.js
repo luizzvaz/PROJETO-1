@@ -12,7 +12,7 @@ export default function balonMapa() {
   const mouseMove = {
     handleEvent(e) {
       const px = 'px';
-      this.balonBox.style.top = (e.pageY + 8) + px;
+      this.balonBox.style.top = `${e.pageY + 8}px`;
       this.balonBox.style.left = (e.pageX + 8) + px;
     },
   };

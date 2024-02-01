@@ -3,7 +3,8 @@ import animaNumero from './animaNumero.js';
 export default function infofetch() {
   function addInfo(e) {
     const h3 = e.especie;
-    const h3selec = document.querySelector('#' + h3);
+    const hastg = '#';
+    const h3selec = document.querySelector(hastg + h3);
     const origemSpan = document.createElement('span');
     const origemSpan1 = document.createElement('span');
     const numerosNat = +e.natural;
