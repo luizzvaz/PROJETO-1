@@ -1,29 +1,32 @@
-export default function intScrollSuave() {
-  const linksInternos = document.querySelectorAll('[data-scroll="suave"] a[href^="#"]');
+export default class ScrollSuave {
+  constructor(links, options) {
+    this.linksInternos = document.querySelectorAll(links);
+    if (options === undefined) {
+      this.options = { behavior: 'smooth', block: 'start' };
+    } else {
+      this.options = options;
+    }
+    // links  =  '[data-scroll="suave"] a[href^="#"]'
+    this.scrollSuave = this.scrollSuave.bind(this);
+  }
 
-  function scrollSuave(event) {
+  scrollSuave(event) {
     event.preventDefault();
     const herfe = event.currentTarget.getAttribute('href');
     const secao = document.querySelector(herfe);
-    const topo = secao.offsetTop;
-    window.scrollTo({
-      top: topo,
-      behavior: 'smooth',
+    secao.scrollIntoView(this.options);
+  }
+
+  addLinkEvent() {
+    this.linksInternos.forEach((link) => {
+      link.addEventListener('click', this.scrollSuave);
     });
   }
-  if (linksInternos.length) {
-    // function scrollSuave2(event) {
-    //   event.preventDefault();
-    //   const herfe = event.currentTarget.getAttribute('href')
-    //   const secao = document.querySelector(herfe)
-    //   secao.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: 'start',
-    //   })
-    //   //esse não precisa saber a distancia, apenas selecionar o elemento!
-    // }
-    linksInternos.forEach((link) => {
-      link.addEventListener('click', scrollSuave);
-    });
+
+  init() {
+    if (this.linksInternos.length) {
+      this.addLinkEvent();
+    }
+    return this;
   }
 }
