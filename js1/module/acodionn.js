@@ -1,24 +1,36 @@
-export default function acordion() {
-  const acordionList = document.querySelectorAll('[data-acordion="seletor"] dt');
-  function ativando() {
-    this.nextElementSibling.classList.toggle('ativar');
-    this.classList.toggle('ativar');
+export default class Acordion {
+  constructor(list) {
+    this.acordionList = document.querySelectorAll(list);
+    this.activeclass = 'ativar';
   }
-  // if (acordionList.length) {
-  //   acordionList[0].nextElementSibling.classList.add('ativar');
-  //   acordionList.forEach((item, index) => {
-  //     item.addEventListener('click', () => {
-  //       console.log(index);
-  //       item.nextElementSibling.classList.toggle('ativar');
-  //     });
-  //   });
-  // }
+  // add a classe aos itens
 
-  if (acordionList.length) {
-    acordionList[0].classList.add('ativar');
-    acordionList[0].nextElementSibling.classList.add('ativar');
-    acordionList.forEach((item) => {
-      item.addEventListener('click', ativando);
+  ativando(item) {
+    item.nextElementSibling.classList.toggle(this.activeclass);
+    item.classList.toggle(this.activeclass);
+  }
+  // add os eventos aos itens
+
+  addAcordionEvent() {
+    this.acordionList.forEach((item) => {
+      item.addEventListener('click', () => this.ativando(item));
     });
   }
+  // inicia funçao
+
+  init() {
+    if (this.acordionList.length) {
+      this.ativando(this.acordionList[0]);
+      this.addAcordionEvent();
+    }
+  }
 }
+// if (acordionList.length) {
+//   acordionList[0].nextElementSibling.classList.add(this.activeclass);
+//   acordionList.forEach((item, index) => {
+//     item.addEventListener('click', () => {
+//       console.log(index);
+//       item.nextElementSibling.classList.toggle(this.activeclass);
+//     });
+//   });
+// }
