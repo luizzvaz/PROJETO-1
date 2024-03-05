@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import navtab from './module/navtab.js';
+import Navtab from './module/navtab.js';
 import Acordion from './module/acodionn.js';
 import ScrollSuave from './module/suavescroll.js';
 import pageint from './module/animapage.js';
@@ -15,9 +15,11 @@ scrollSuave.init(); // refatorado
 
 const acodionn = new Acordion('[data-acordion="seletor"] dt');
 acodionn.init();
-horario();
 
-navtab();
+const navtab = new Navtab('[data-tab="menu"] li', '[data-tab="content"] section');
+navtab.init();
+
+horario();
 
 pageint();
 modal();
